@@ -71,9 +71,11 @@ def create_model():
     # GRU layer - understands sequence patterns in text
     x = GRU(64)(x)
     
+    x = Dropout(0.2)(x)
+    
     # Dense layers - learn to classify based on GRU output
     x = Dense(16, activation='relu')(x)
-
+    
     x = Dropout(0.2)(x)
     
     # Output layer - single number between 0-1 (probability of spam)
@@ -118,7 +120,7 @@ def predict_spam(model, text, tokenizer):
     prediction = model.predict(padded, verbose=0)[0][0]
     
     # Return formatted result
-    if prediction > 0.5:
+    if prediction > 0.85:
         return f"SPAM 🔴 (confidence: {prediction * 100:.1f}%)"
     else:
         return f"NOT SPAM 🟢 (confidence: {(1 - prediction) * 100:.1f}%)"
@@ -149,6 +151,4 @@ print(f"📉 Test Loss: {test_loss:.4f}")
 
 print("\n" + "="*50)
 print("✅ SPAM DETECTOR READY FOR USE!")
-
 print("="*50)
-
