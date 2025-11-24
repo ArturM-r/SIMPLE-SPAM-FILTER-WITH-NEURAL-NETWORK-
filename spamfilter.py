@@ -6,7 +6,6 @@ from tensorflow.keras.layers import Dense, Embedding, GRU, Input, Dropout
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
 
 print("=== SMS SPAM DETECTOR WITH NEURAL NETWORK ===\n")
 
@@ -152,3 +151,4 @@ print(f"📉 Test Loss: {test_loss:.4f}")
 print("\n" + "="*50)
 print("✅ SPAM DETECTOR READY FOR USE!")
 print("="*50)
+
