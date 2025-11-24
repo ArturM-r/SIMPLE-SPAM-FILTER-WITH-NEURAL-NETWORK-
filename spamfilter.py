@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense, Embedding, GRU, Input
+from tensorflow.keras.layers import Dense, Embedding, GRU, Input, DropOut
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
@@ -73,6 +73,8 @@ def create_model():
     
     # Dense layers - learn to classify based on GRU output
     x = Dense(16, activation='relu')(x)
+
+    x = DropOut(0.2)(x)
     
     # Output layer - single number between 0-1 (probability of spam)
     outputs = Dense(1, activation="sigmoid")(x)
@@ -147,4 +149,5 @@ print(f"📉 Test Loss: {test_loss:.4f}")
 
 print("\n" + "="*50)
 print("✅ SPAM DETECTOR READY FOR USE!")
+
 print("="*50)
